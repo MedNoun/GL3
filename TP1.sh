@@ -27,8 +27,7 @@ Bonjour choisissez une option :
         lsmod | nl | sed 's/^ *//g' | grep ^$num | head -1 | cut -f2 | cut -d" " -f1 | tee -a remouved.txt | xargs sudo rmmod && echo "le module a été bien déchargé de la mémoire"
         ;;
     4)
-        echo "voici la liste des module déchargés :
-"
+        echo "voici la liste des module déchargés :"
         nl remouved.txt
         echo "
 choisir le module a recharger"
