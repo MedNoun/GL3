@@ -1,9 +1,12 @@
 package com.codewithmosh;
 
-import com.codewithmosh.proxy.*;
+import java.io.IOException;
+
+import com.codewithmosh.builder.Demo;
 
 public class Main {
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws IOException {
         Demo.show();
     }
 }
