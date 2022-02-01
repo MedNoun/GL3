@@ -24,28 +24,18 @@ export class CoffeesController {
     const { limit, offset } = paginationQuery;
     return this.coffesService.findAll();
   }
-  //   you can access library specific elements from express but its not recomended
-  //   @Get()
-  //   findAll(@Res() response) {
-  //     response.status(200).send('hello there from express');
-  //   }
-  //we can remove the id and replace id by params.id to access it ! :
   @Get(':id')
   findOne(@Param('id') id: string) {
-    //   findOne(@Param() params) {
-    const coffee = this.coffesService.findOne(id); //return `This action returns #${params.id}`;
+    const coffee = this.coffesService.findOne(id);
     if (!coffee) {
       throw new NotFoundException(`Coffe #${id} not found`);
     }
     return coffee;
   }
   @Post()
-  @HttpCode(HttpStatus.GONE) //specify the http status code
   create(@Body() createCoffeeDto: CreateCoffeeDto) {
-    // we can select a specific body part @Body('name')
     return this.coffesService.create(createCoffeeDto);
   }
-
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     return this.coffesService.update(id, updateCoffeeDto);
