@@ -26,11 +26,7 @@ export class CoffeesController {
   }
   @Get(':id')
   findOne(@Param('id') id: string) {
-    const coffee = this.coffesService.findOne(id);
-    if (!coffee) {
-      throw new NotFoundException(`Coffe #${id} not found`);
-    }
-    return coffee;
+    return this.coffesService.findOne(id);
   }
   @Post()
   create(@Body() createCoffeeDto: CreateCoffeeDto) {

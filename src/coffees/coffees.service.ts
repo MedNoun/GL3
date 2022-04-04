@@ -1,11 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { Event } from 'src/events/entities/event.entity';
-import {
-  Connection,
-  Repository,
-} from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
@@ -21,9 +19,12 @@ export class CoffeesService {
 
     @InjectRepository(Event)
     private readonly eventRepository: Repository<Event>,
-
+    private readonly configService: ConfigService,
     private readonly connection: Connection,
-  ) {}
+  ) {
+    const datahost = configService.get<string>('DATABASE_HOST');
+    console.log(datahost);
+  }
 
   //generally we implement the CRUD operation in the services
   findAll(paginationQuery: PaginationQueryDto) {
