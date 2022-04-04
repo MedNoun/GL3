@@ -36,15 +36,12 @@ export class SkillService {
   findOne(id: string) {
     return this.skillrepository.findOne(id);
   }
-  findOneName(designation: string) {
-    return this.skillrepository.findOne({ designation });
-  }
 
   update(id: number, updateSkillDto: UpdateSkillDto) {
     return `This action updates a #${id} skill`;
   }
 
   remove(id: number) {
-    return `This action removes a #${id} skill`;
+    return this.skillrepository.softDelete(id);
   }
 }

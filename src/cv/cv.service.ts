@@ -51,6 +51,6 @@ export class CvService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} cv`;
+    return this.cvrepository.softDelete(id);
   }
 }
