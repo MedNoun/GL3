@@ -27,7 +27,7 @@ export class CvService {
     return this.cvrepository.save(cv);
   }
   async preloadDesignationByName(designation: string): Promise<Skill> {
-    const skill = await this.skillRepository.findOne(designation);
+    const skill = await this.skillRepository.findOne({ designation });
     return skill ? skill : this.skillRepository.create({ designation, cv: [] });
   }
 

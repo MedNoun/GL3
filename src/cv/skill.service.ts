@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CvService } from 'src/cv/cv.service';
 import { Cv } from 'src/cv/entities/cv.entity';
 import { Repository } from 'typeorm';
 import { CreateSkillDto } from './dto/create-skill.dto';
