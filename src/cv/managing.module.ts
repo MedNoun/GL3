@@ -6,10 +6,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Skill } from './entities/skill.entity';
 import { SkillController } from './skill.controller';
 import { SkillService } from './skill.service';
+import { User } from './entities/user.entity';
+import { UserService } from './user.service';
+import { UserController } from './user.controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Cv, Skill])],
-  controllers: [CvController, SkillController],
-  providers: [CvService, SkillService]
+  imports: [TypeOrmModule.forFeature([Cv, Skill, User])],
+  controllers: [CvController, SkillController, UserController],
+  providers: [CvService, SkillService, UserService],
 })
-export class CvModule {}
+export class ManagingModule {}

@@ -4,7 +4,7 @@ import {
   Column,
   Entity,
   ManyToOne,
-  PrimaryColumn,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -18,6 +18,6 @@ export class User {
   email: string;
   @Column()
   password: string;
-  @ManyToOne((type) => Cv)
-  cv: Cv;
+  @OneToMany((type) => Cv, (cv) => cv.user)
+  cv: Cv[];
 }

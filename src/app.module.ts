@@ -2,8 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CvModule } from './cv/cv.module';
-import { UserModule } from './user/user.module';
+import { ManagingModule } from './cv/managing.module';
 
 @Module({
   imports: [
@@ -19,8 +18,7 @@ import { UserModule } from './user/user.module';
       //synchronizes the typeORM entities with the database every time
     }),
 
-    CvModule,
-    UserModule,
+    ManagingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -10,7 +10,6 @@ import {
 export class CreateCvDto {
   @IsNotEmpty()
   idUser: number;
-  @IsArray()
   @IsString({ each: true })
   designation: string[];
   @IsString()
