@@ -22,7 +22,7 @@ export class CoffeesService {
     private readonly configService: ConfigService,
     private readonly connection: Connection,
   ) {
-    const datahost = configService.get<string>('DATABASE_HOST');
+    const datahost = configService.get('database.host');
     console.log(datahost);
   }
 
