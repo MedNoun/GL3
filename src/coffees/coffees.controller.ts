@@ -12,6 +12,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
@@ -20,9 +21,9 @@ import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 export class CoffeesController {
   constructor(private readonly coffesService: CoffeesService) {}
   @Get()
-  findAll(@Query() paginationQuery) {
+  findAll(@Query() paginationQuery: PaginationQueryDto) {
     const { limit, offset } = paginationQuery;
-    return this.coffesService.findAll();
+    return this.coffesService.findAll(paginationQuery);
   }
   //   you can access library specific elements from express but its not recomended
   //   @Get()
@@ -32,12 +33,8 @@ export class CoffeesController {
   //we can remove the id and replace id by params.id to access it ! :
   @Get(':id')
   findOne(@Param('id') id: string) {
+    return this.coffesService.findOne(id);
     //   findOne(@Param() params) {
-    const coffee = this.coffesService.findOne(id); //return `This action returns #${params.id}`;
-    if (!coffee) {
-      throw new NotFoundException(`Coffe #${id} not found`);
-    }
-    return coffee;
   }
   @Post()
   @HttpCode(HttpStatus.GONE) //specify the http status code
