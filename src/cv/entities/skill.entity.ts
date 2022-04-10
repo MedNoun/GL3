@@ -9,7 +9,7 @@ import {
 @Entity()
 export class Skill {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
   @Column({ nullable: false })
   designation: string;
   @ManyToMany((type) => Cv, (cv) => cv.skills)

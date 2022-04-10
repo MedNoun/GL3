@@ -15,7 +15,7 @@ import { User } from './user.entity';
 @Entity()
 export class Cv {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
   @Column()
   name: string;
   @Column()

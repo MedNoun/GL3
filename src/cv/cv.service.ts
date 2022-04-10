@@ -46,8 +46,29 @@ export class CvService {
     return await this.cvrepository.findOne(id);
   }
 
-  update(id: number, updateCvDto: UpdateCvDto) {
-    return `This action updates a #${id} cv`;
+  async update(id: number, updateCvDto: UpdateCvDto) {
+    const skills: Skill[] =
+      updateCvDto.designation &&
+      (await Promise.all(
+        updateCvDto.designation.map((item) =>
+          this.preloadDesignationByName(item),
+        ),
+      ));
+
+    const user: User =
+      updateCvDto.idUser &&
+      (await this.userRepository.findOne(+updateCvDto.idUser));
+    const cv: Cv = await this.cvrepository.preload({
+      id,
+      ...updateCvDto,
+      user,
+      skills,
+    });
+    if (cv) {
+      return this.cvrepository.save(cv);
+    } else {
+      throw new NotFoundException(`Le CV d'id ${id} n'existe pas `);
+    }
   }
 
   remove(id: number) {

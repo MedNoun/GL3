@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Cv } from 'src/cv/entities/cv.entity';
 import { Repository } from 'typeorm';
@@ -37,8 +37,25 @@ export class SkillService {
     return this.skillrepository.findOne(id);
   }
 
-  update(id: number, updateSkillDto: UpdateSkillDto) {
-    return `This action updates a #${id} skill`;
+  async update(id: number, updateSkillDto: UpdateSkillDto) {
+    const cv: Cv[] =
+      updateSkillDto.cv &&
+      (await Promise.all(
+        updateSkillDto.cv.map((e) => {
+          return this.cvRepository.findOne(e);
+        }),
+      ));
+
+    const newSkill: Skill = await this.skillrepository.preload({
+      id,
+      designation: updateSkillDto.designation,
+      ...cv,
+    });
+    if (newSkill) {
+      return this.skillrepository.save(newSkill);
+    } else {
+      throw new NotFoundException(`Le skill d'id ${id} n'existe pas `);
+    }
   }
 
   remove(id: number) {
