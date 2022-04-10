@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ManagingModule } from './cv/managing.module';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
   imports: [
@@ -19,6 +20,8 @@ import { ManagingModule } from './cv/managing.module';
     }),
 
     ManagingModule,
+
+    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
