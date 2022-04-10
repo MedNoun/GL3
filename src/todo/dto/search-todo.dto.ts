@@ -8,7 +8,7 @@ export class SearchTodoDto {
   @IsEnum(StatusEnum)
   status: StatusEnum;
   @IsOptional()
-  page : number;
+  page: number;
   @IsOptional()
-  offset : number;
+  offset: number;
 }
