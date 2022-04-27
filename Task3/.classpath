@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Users/Ines/Desktop/GL3/Semestre 2/Systemes Repartis/TP1/amqp-client-5.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ines/Desktop/GL3/Semestre 2/Systemes Repartis/TP1/rabbitmq-jms-1.11.1.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ines/Desktop/GL3/Semestre 2/Systemes Repartis/TP1/slf4j-api-1.7.25.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ines/Desktop/GL3/Semestre 2/Systemes Repartis/TP1/slf4j-api-1.8.0-beta2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
